@@ -222,12 +222,15 @@ initDB();
 // ============================================
 //  PUBLIC ROUTES
 // ============================================
-// app.get('/', (_req, res) => {
-  // res.status(200).send('Sudha Wellness Backend is running');
-// });
-app.use(express.static(path.join(__dirname, '..'), {
-    index: 'index.html'
-}));
+console.log("__dirname =", __dirname);
+console.log("Static folder =", path.join(__dirname, ".."));
+
+app.get('/', (_req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'index.html'));
+});
+// app.use(express.static(path.join(__dirname, '..'), {
+    // index: 'index.html'
+// }));
 app.get('/api/health', async (_req, res) => {
   const dbHealth = await db.healthCheck();
   res.json({
