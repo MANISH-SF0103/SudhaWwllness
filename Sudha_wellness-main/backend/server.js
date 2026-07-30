@@ -222,10 +222,12 @@ initDB();
 // ============================================
 //  PUBLIC ROUTES
 // ============================================
-app.get('/', (_req, res) => {
-  res.status(200).send('Sudha Wellness Backend is running');
-});
-
+// app.get('/', (_req, res) => {
+  // res.status(200).send('Sudha Wellness Backend is running');
+// });
+app.use(express.static(path.join(__dirname, '..'), {
+    index: 'index.html'
+}));
 app.get('/api/health', async (_req, res) => {
   const dbHealth = await db.healthCheck();
   res.json({
